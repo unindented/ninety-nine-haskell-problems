@@ -1,5 +1,7 @@
 module Problems1To10 where
 
+import Data.List (foldl')
+
 -- | Problem 1
 -- Find the last element of a list.
 --
@@ -33,3 +35,14 @@ myButLast = last . init
 -- 'e'
 elementAt :: [a] -> Int -> a
 elementAt xs n = head $ drop (n-1) xs
+
+-- | Problem 4
+-- Find the number of elements of a list.
+--
+-- >>> myLength [123, 456, 789]
+-- 3
+--
+-- >>> myLength "Hello, world!"
+-- 13
+myLength :: [a] -> Int
+myLength = foldl' (\n -> const (n+1)) 0

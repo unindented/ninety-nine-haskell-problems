@@ -57,3 +57,17 @@ myLength = foldl' (\n -> const (n+1)) 0
 -- "!amanap ,lanac a ,nalp a ,nam A"
 myReverse :: [a] -> [a]
 myReverse = foldl' (flip (:)) []
+
+-- | Problem 6
+-- Find out whether a list is a palindrome.
+--
+-- >>> isPalindrome [1,2,3]
+-- False
+--
+-- >>> isPalindrome "madamimadam"
+-- True
+--
+-- >>> isPalindrome [1,2,4,8,16,8,4,2,1]
+-- True
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome xs = xs == reverse xs

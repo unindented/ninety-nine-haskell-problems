@@ -46,3 +46,14 @@ elementAt xs n = head $ drop (n-1) xs
 -- 13
 myLength :: [a] -> Int
 myLength = foldl' (\n -> const (n+1)) 0
+
+-- | Problem 5
+-- Reverse a list.
+--
+-- >>> myReverse [1,2,3,4]
+-- [4,3,2,1]
+--
+-- >>> myReverse "A man, a plan, a canal, panama!"
+-- "!amanap ,lanac a ,nalp a ,nam A"
+myReverse :: [a] -> [a]
+myReverse = foldl' (flip (:)) []

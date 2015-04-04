@@ -88,3 +88,21 @@ myFlatten (Elem x) = [x]
 myFlatten (List xs) = concatMap myFlatten xs
 
 data NestedList a = Elem a | List [NestedList a]
+
+-- | Problem 8
+-- Eliminate consecutive duplicates of list elements.
+--
+-- >>> myCompress "aaaabccaadeeee"
+-- "abcade"
+myCompress :: (Eq a) => [a] -> [a]
+myCompress = map head . myGroup
+
+-- | Problem 9
+-- Pack consecutive duplicates of list elements into sublists.
+--
+-- >>> myGroup ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e']
+-- ["aaaa","b","cc","aa","d","eeee"]
+myGroup :: (Eq a) => [a] -> [[a]]
+myGroup [] = []
+myGroup (x:xs) = (x:first) : myGroup rest
+                 where (first, rest) = span (== x) xs

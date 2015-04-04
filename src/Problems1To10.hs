@@ -106,3 +106,12 @@ myGroup :: (Eq a) => [a] -> [[a]]
 myGroup [] = []
 myGroup (x:xs) = (x:first) : myGroup rest
                  where (first, rest) = span (== x) xs
+
+-- | Problem 10
+-- Run-length encoding of a list.
+--
+-- >>> myEncode "aaaabccaadeeee"
+-- [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
+{-# ANN myEncode "HLint: ignore Use &&&" #-}
+myEncode :: (Eq a) => [a] -> [(Int, a)]
+myEncode = map (\x -> (length x, head x)) . myGroup

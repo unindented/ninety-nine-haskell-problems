@@ -71,3 +71,20 @@ myReverse = foldl' (flip (:)) []
 -- True
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome xs = xs == reverse xs
+
+-- | Problem 7
+-- Flatten a nested list structure.
+--
+-- >>> myFlatten (List [])
+-- []
+--
+-- >>> myFlatten (Elem 5)
+-- [5]
+--
+-- >>> myFlatten (List [Elem 1, List [Elem 2, List [Elem 3, Elem 4], Elem 5]])
+-- [1,2,3,4,5]
+myFlatten :: NestedList a -> [a]
+myFlatten (Elem x) = [x]
+myFlatten (List xs) = concatMap myFlatten xs
+
+data NestedList a = Elem a | List [NestedList a]
